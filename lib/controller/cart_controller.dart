@@ -16,10 +16,10 @@ class CartController extends GetxController {
   Map<int, CartModel> get items => _items;
 
   //get item in cart
-  List<CartModel> get getCartItem{
-        return _items.entries.map((e) {
-          return e.value;
-        }).toList();
+  List<CartModel> get getCartItem {
+    return _items.entries.map((e) {
+      return e.value;
+    }).toList();
   }
 
 //total item in cart
@@ -45,6 +45,7 @@ class CartController extends GetxController {
           img: value.img,
           isExit: true,
           time: DateTime.now().toString(),
+          product: product,
         );
       });
       if (totalQuantity <= 0) {
@@ -61,6 +62,7 @@ class CartController extends GetxController {
             img: product.img,
             isExit: true,
             time: DateTime.now().toString(),
+            product: product,
           );
         });
       } else {
@@ -69,6 +71,7 @@ class CartController extends GetxController {
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
+    update();
   }
 
   //check itemm exit in cart
@@ -90,5 +93,14 @@ class CartController extends GetxController {
       });
     }
     return quantity;
+  }
+
+  //total Amount
+  int get totalAmount{
+    var totalAmount = 0;
+    _items.forEach((key, value) {
+      totalAmount += value.product!.price! * value.quantity!;
+    });
+    return totalAmount;
   }
 }

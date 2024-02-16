@@ -15,8 +15,10 @@ import '../../widgets/big_text.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   final int pageId;
+  final String page;
 
-  RecommendedFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  RecommendedFoodDetail({Key? key, required this.pageId, required this.page})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,37 +37,42 @@ class RecommendedFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(RoutesHelper.getInitial());
+                    if (page == "cartPage") {
+                      Get.toNamed(RoutesHelper.getCartPage());
+                    } else {
+                      Get.toNamed(RoutesHelper.getInitial());
+                    }
                   },
                   child: AppIcon(icon: Icons.clear),
                 ),
                 GetBuilder<PopularProductController>(builder: (controller) {
                   return GestureDetector(
-                  onTap: (){
-                    Get.to(()=> CartPage());
-                  },
+                    onTap: () {
+                      if (controller.totalItems >= 1)
+                        Get.toNamed(RoutesHelper.getCartPage());
+                    },
                     child: Stack(
                       children: [
                         AppIcon(icon: Icons.shopping_cart_outlined),
                         Get.find<PopularProductController>().totalItems >= 1
                             ? Positioned(
-                          right: 0,
-                          top: 0,
-                          child: Container(
-                            width: Dimension.width20,
-                            height: Dimension.width20,
-                            child: AppIcon(
-                              icon: Icons.circle,
-                              iconColor: Colors.transparent,
-                              backgroundcolor: AppColors.mainColor,
-                              size: Dimension.size20,
-                            ),
-                          ),
-                        )
+                                right: 0,
+                                top: 0,
+                                child: Container(
+                                  width: Dimension.width20,
+                                  height: Dimension.width20,
+                                  child: AppIcon(
+                                    icon: Icons.circle,
+                                    iconColor: Colors.transparent,
+                                    backgroundcolor: AppColors.mainColor,
+                                    size: Dimension.size20,
+                                  ),
+                                ),
+                              )
                             : Container(),
                         Positioned(
                           right: 3,
-                          top:0,
+                          top: 0,
                           child: BigText(
                             size: Dimension.font12,
                             text: Get.find<PopularProductController>()

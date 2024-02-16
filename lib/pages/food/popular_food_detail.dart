@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hc_e_commerce_food_delivery/controller/cart_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/popular_product_controller.dart';
@@ -18,8 +20,8 @@ import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   final int pageId;
-
-  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  final String page;
+  PopularFoodDetail({Key? key, required this.pageId, required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,18 +58,24 @@ class PopularFoodDetail extends StatelessWidget {
                 children: [
                   GestureDetector(
                       onTap: () {
-                        Get.toNamed(RoutesHelper.getInitial());
+                        if(page == "cartPage"){
+                          Get.toNamed(RoutesHelper.getCartPage());
+                        }else{
+                          Get.toNamed(RoutesHelper.getInitial());
+                        }
+
                       },
                       child: AppIcon(size: Dimension.size50,icon: Icons.arrow_back_ios_rounded)),
                   GetBuilder<PopularProductController>(builder: (controller) {
                     return GestureDetector(
                     onTap: (){
-                      Get.to(()=>CartPage());
+                      if(controller.totalItems  >= 1)
+                      Get.toNamed(RoutesHelper.getCartPage());
                     },
                       child: Stack(
                         children: [
                           AppIcon(icon: Icons.shopping_cart_outlined),
-                          Get.find<PopularProductController>().totalItems >= 1
+                          controller.totalItems >= 1
                               ? Positioned(
                                   right: 0,
                                   top: 0,
@@ -88,7 +96,7 @@ class PopularFoodDetail extends StatelessWidget {
                            top:0,
                             child: BigText(
                               size: Dimension.font12,
-                              text: Get.find<PopularProductController>()
+                              text: controller
                                   .totalItems
                                   .toString(),
                               color: Colors.white,
