@@ -15,6 +15,8 @@ class RoutesHelper {
   static String  getRecommendFood(int pageId) => '$recommended?pageId=$pageId';
 
 
+
+
   static List<GetPage> route = [
     //home page
     GetPage(name: initial,
@@ -38,6 +40,8 @@ class RoutesHelper {
       },
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 300),),
+    //cart
+
 
   ];
 
