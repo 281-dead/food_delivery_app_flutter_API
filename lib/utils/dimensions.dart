@@ -73,4 +73,7 @@ class Dimension {
 
   //dynamic buttom height bar
   static double  bottomHeightBar = screenHeight / 8.02;
+
+  //dynamic size splash screen
+static double sizeSplash = screenHeight / 3.2;
 }

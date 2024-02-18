@@ -5,8 +5,10 @@ import 'package:hc_e_commerce_food_delivery/pages/cart/cart_page.dart';
 import 'package:hc_e_commerce_food_delivery/pages/food/popular_food_detail.dart';
 import 'package:hc_e_commerce_food_delivery/pages/food/recomended_food_detail.dart';
 import 'package:hc_e_commerce_food_delivery/pages/home/food_page_body.dart';
+import 'package:hc_e_commerce_food_delivery/pages/home/home_page.dart';
 import 'package:hc_e_commerce_food_delivery/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
+import 'package:hc_e_commerce_food_delivery/pages/home/splash_page.dart';
 import 'package:hc_e_commerce_food_delivery/routes/routes_helper.dart';
 import 'helper/dependecies.dart' as dep;
 
@@ -23,15 +25,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
 
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      initialRoute: RoutesHelper.getInitial(),
-      getPages: RoutesHelper.route,
-    );
+   return GetBuilder<PopularProductController>(builder: (_){
+     return GetBuilder<RecommendedProductController>(builder: (_){
+         return GetMaterialApp(
+         debugShowCheckedModeBanner: false,
+         title: 'Flutter Demo',
+         initialRoute: RoutesHelper.getSplashPage(),
+         getPages: RoutesHelper.route,
+       );
+     });
+   });
 
   }
 }

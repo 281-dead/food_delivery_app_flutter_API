@@ -116,6 +116,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "persistent_bottom_nav_bar",
+      "rootUri": "file:///C:/Users/hoang/AppData/Local/Pub/Cache/hosted/pub.dev/persistent_bottom_nav_bar-5.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///D:/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -182,7 +188,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-02-13T09:04:23.420515Z",
+  "generated": "2024-02-16T14:31:25.335181Z",
   "generator": "pub",
   "generatorVersion": "3.2.6"
 }

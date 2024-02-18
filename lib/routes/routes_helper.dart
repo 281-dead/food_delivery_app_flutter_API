@@ -2,16 +2,19 @@ import 'package:get/get.dart';
 import 'package:hc_e_commerce_food_delivery/pages/cart/cart_page.dart';
 import 'package:hc_e_commerce_food_delivery/pages/food/popular_food_detail.dart';
 import 'package:hc_e_commerce_food_delivery/pages/food/recomended_food_detail.dart';
+import 'package:hc_e_commerce_food_delivery/pages/home/home_page.dart';
 import 'package:hc_e_commerce_food_delivery/pages/home/main_food_page.dart';
+import 'package:hc_e_commerce_food_delivery/pages/home/splash_page.dart';
 
 class RoutesHelper {
   static const String initial = "/";
+  static const String splash = "/splash-page";
   static const String popular = "/popular-food";
   static const String recommended = "/recommended-food";
   static const String cart = "/cart-page";
 
   static String  getInitial() => '$initial';
-
+  static String getSplashPage()=> '$splash';
   static String  getPopularFood(int pageId , String page) => '$popular?pageId=$pageId&page=$page';
 
   static String  getRecommendFood(int pageId, String page) => '$recommended?pageId=$pageId&page=$page';
@@ -23,9 +26,11 @@ class RoutesHelper {
 
     //home page
     GetPage(name: initial,
-      page: () => MainFoodPage(),
-      transition: Transition.fade,
-      transitionDuration: Duration(milliseconds: 300),),
+      page: () => const HomePage(),),
+
+    //splash page
+    GetPage(name: splash,
+      page: () =>const  SplashScreeen(),),
 
     //popular detail Page
     GetPage(name: popular,
