@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hc_e_commerce_food_delivery/controller/cart_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/popular_product_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/recommended_product_controller.dart';
 import 'package:hc_e_commerce_food_delivery/pages/cart/cart_page.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
+  Get.find<CartController>().getCartData();
    return GetBuilder<PopularProductController>(builder: (_){
      return GetBuilder<RecommendedProductController>(builder: (_){
          return GetMaterialApp(

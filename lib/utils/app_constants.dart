@@ -1,6 +1,7 @@
 //cac hang so trong application
 class AppConstants{
 
+
   static const String APP_NAME = "DBFood";
 
   static const int APP_VERSION = 1;
@@ -15,5 +16,8 @@ class AppConstants{
   static const String TOKEN = "DBToken";
 
   static const String UPLOAD_IMG = "/uploads/";
+
+  static const String CART_LIST = "Cart-list";
+
 
 }

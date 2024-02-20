@@ -15,6 +15,9 @@ class CartController extends GetxController {
 
   Map<int, CartModel> get items => _items;
 
+  //only for storage and sharedPreferences
+  List<CartModel> storageItems = [];
+
   //get item in cart
   List<CartModel> get getCartItem {
     return _items.entries.map((e) {
@@ -43,7 +46,7 @@ class CartController extends GetxController {
           price: value.price,
           quantity: value.quantity! + quantity,
           img: value.img,
-          isExit: true,
+          isExist: true,
           time: DateTime.now().toString(),
           product: product,
         );
@@ -60,7 +63,7 @@ class CartController extends GetxController {
             price: product.price,
             quantity: quantity,
             img: product.img,
-            isExit: true,
+            isExist: true,
             time: DateTime.now().toString(),
             product: product,
           );
@@ -71,6 +74,7 @@ class CartController extends GetxController {
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
+    cartRepo.addToCartList(getCartItem);
     update();
   }
 
@@ -103,4 +107,18 @@ class CartController extends GetxController {
     });
     return totalAmount;
   }
+
+  //get cart data in local
+List<CartModel> getCartData(){
+  setCart = cartRepo.getCartList();
+
+    return storageItems;
+}
+set setCart(List<CartModel> items){
+    storageItems = items;
+    print("length of cart items: " + storageItems.length.toString());
+    for(int i = 0; i < storageItems.length ; i++){
+      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+    }
+}
 }
