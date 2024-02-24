@@ -100,7 +100,7 @@ class CartController extends GetxController {
   }
 
   //total Amount
-  int get totalAmount{
+  int get totalAmount {
     var totalAmount = 0;
     _items.forEach((key, value) {
       totalAmount += value.product!.price! * value.quantity!;
@@ -109,16 +109,33 @@ class CartController extends GetxController {
   }
 
   //get cart data in local
-List<CartModel> getCartData(){
-  setCart = cartRepo.getCartList();
+  List<CartModel> getCartData() {
+    setCart = cartRepo.getCartList();
 
     return storageItems;
-}
-set setCart(List<CartModel> items){
+  }
+
+  //set cart data in local
+  set setCart(List<CartModel> items) {
     storageItems = items;
-    print("length of cart items: " + storageItems.length.toString());
-    for(int i = 0; i < storageItems.length ; i++){
+    //print("length of cart items: " + storageItems.length.toString());
+    for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
-}
+  }
+
+  //add cart to history
+  void addToHistory() {
+    cartRepo.addToCartHistory();
+    clear();
+  }
+
+  void clear() {
+    _items = {};
+    update();
+  }
+
+  List<CartModel> getCartHistory() {
+    return cartRepo.getCartHistory();
+  }
 }

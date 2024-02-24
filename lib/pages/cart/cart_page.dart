@@ -88,14 +88,14 @@ class CartPage extends StatelessWidget {
                                           .indexOf(_cartList[index].product);
                                   if (popularIndex >= 0) {
                                     Get.toNamed(RoutesHelper.getPopularFood(
-                                        popularIndex,"cartPage"));
+                                        popularIndex, "cartPage"));
                                   } else {
                                     var recommendedIndex =
                                         Get.find<RecommendedProductController>()
                                             .recommededProductList
                                             .indexOf(_cartList[index].product);
                                     Get.toNamed(RoutesHelper.getRecommendFood(
-                                        recommendedIndex,"cartPage"));
+                                        recommendedIndex, "cartPage"));
                                   }
                                 },
                                 child: Container(
@@ -193,7 +193,7 @@ class CartPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar:
-      GetBuilder<CartController>(builder: (cartController) {
+          GetBuilder<CartController>(builder: (cartController) {
         return Container(
           padding: EdgeInsets.only(
             left: Dimension.width30,
@@ -210,10 +210,14 @@ class CartPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BigText(text: "\$ ${cartController.totalAmount}",size: Dimension.font26,),
+              BigText(
+                text: "\$ ${cartController.totalAmount}",
+                size: Dimension.font26,
+              ),
               GestureDetector(
                 onTap: () {
-                      //payment
+                  cartController
+                      .addToHistory(); //payment, Delete the products in the cart and then move to the cart history page.
                 },
                 child: Container(
                   margin: EdgeInsets.only(right: Dimension.width10),

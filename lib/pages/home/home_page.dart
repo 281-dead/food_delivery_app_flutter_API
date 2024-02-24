@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hc_e_commerce_food_delivery/pages/cart/cart_history_page.dart';
 import 'package:hc_e_commerce_food_delivery/pages/home/main_food_page.dart';
 import 'package:hc_e_commerce_food_delivery/routes/routes_helper.dart';
 import 'package:hc_e_commerce_food_delivery/utils/colors.dart';
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   var page = [
     MainFoodPage(),
     Container(child: Center(child: Text('Page 1'))),
-    Container(child: Center(child: Text('Page 2'))),
+    CartHistoryPage(),
     Container(child: Center(child: Text('Page 3'))),
 
   ];
@@ -46,9 +47,9 @@ class _HomePageState extends State<HomePage> {
         showUnselectedLabels: false,
         items: const[
            BottomNavigationBarItem( label: "home",icon:Icon( Icons.home),),
-           BottomNavigationBarItem(label: "home",icon:Icon( Icons.home),),
-          BottomNavigationBarItem(label: "home",icon:Icon( Icons.home),),
-          BottomNavigationBarItem(label: "home",icon:Icon( Icons.home),),
+           BottomNavigationBarItem(label: "delivery",icon:Icon( Icons.delivery_dining),),
+          BottomNavigationBarItem(label: "history",icon:Icon( Icons.shopping_cart),),
+          BottomNavigationBarItem(label: "contact",icon:Icon( Icons.person),),
         ],
       ),
     );
