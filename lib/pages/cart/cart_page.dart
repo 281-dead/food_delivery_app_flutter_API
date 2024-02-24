@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hc_e_commerce_food_delivery/controller/cart_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/popular_product_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/recommended_product_controller.dart';
-import 'package:hc_e_commerce_food_delivery/pages/home/main_food_page.dart';
+import 'package:hc_e_commerce_food_delivery/routes/routes_helper.dart';
 import 'package:hc_e_commerce_food_delivery/utils/app_constants.dart';
 import 'package:hc_e_commerce_food_delivery/utils/colors.dart';
 import 'package:hc_e_commerce_food_delivery/utils/dimensions.dart';
 import 'package:hc_e_commerce_food_delivery/widgets/app_icons.dart';
-import 'package:get/get.dart';
 import 'package:hc_e_commerce_food_delivery/widgets/big_text.dart';
 import 'package:hc_e_commerce_food_delivery/widgets/small_text.dart';
-import 'package:hc_e_commerce_food_delivery/routes/routes_helper.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -94,8 +93,15 @@ class CartPage extends StatelessWidget {
                                         Get.find<RecommendedProductController>()
                                             .recommededProductList
                                             .indexOf(_cartList[index].product);
-                                    Get.toNamed(RoutesHelper.getRecommendFood(
-                                        recommendedIndex, "cartPage"));
+                                    if (recommendedIndex < 0) {
+                                      Get.snackbar("History Product",
+                                          "Product reviews are not available for history products",
+                                          backgroundColor: AppColors.mainColor,
+                                          colorText: Colors.white);
+                                    } else {
+                                      Get.toNamed(RoutesHelper.getRecommendFood(
+                                          recommendedIndex, "cartPage"));
+                                    }
                                   }
                                 },
                                 child: Container(
@@ -210,9 +216,17 @@ class CartPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              BigText(
-                text: "\$ ${cartController.totalAmount}",
-                size: Dimension.font26,
+              Container(
+                width: Dimension.width100,
+                padding: EdgeInsets.all(Dimension.width5),
+                decoration: BoxDecoration(
+                  color: AppColors.buttonBackgroundColor,
+                  borderRadius: BorderRadius.circular(Dimension.radius15),
+                ),
+                child: BigText(
+                  text: "\$ ${cartController.totalAmount}",
+                  size: Dimension.font26,
+                ),
               ),
               GestureDetector(
                 onTap: () {
@@ -220,23 +234,19 @@ class CartPage extends StatelessWidget {
                       .addToHistory(); //payment, Delete the products in the cart and then move to the cart history page.
                 },
                 child: Container(
-                  margin: EdgeInsets.only(right: Dimension.width10),
                   padding: EdgeInsets.all(Dimension.width10),
                   height: Dimension.height60,
-                  width: Dimension.width200,
+                  width: Dimension.width180,
                   decoration: BoxDecoration(
                     color: AppColors.mainColor,
                     borderRadius: BorderRadius.circular(Dimension.radius20),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      BigText(
-                        //size: Dimension.font16,
-                        text: "Check out",
-                        color: Colors.white,
-                      ),
-                    ],
+                  child: Center(
+                    child: BigText(
+                      //size: Dimension.font16,
+                      text: "Check out",
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

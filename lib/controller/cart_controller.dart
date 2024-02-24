@@ -138,4 +138,14 @@ class CartController extends GetxController {
   List<CartModel> getCartHistory() {
     return cartRepo.getCartHistory();
   }
+
+  set setItem(Map<int, CartModel> setItems) {
+    _items = {};
+    _items = setItems;
+  }
+
+  void addToCartList() {
+    cartRepo.addToCartList(getCartItem);
+    update();
+  }
 }
