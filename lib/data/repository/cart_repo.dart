@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:hc_e_commerce_food_delivery/data/api/api_client.dart';
 import 'package:hc_e_commerce_food_delivery/utils/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,8 +15,8 @@ class CartRepo {
 
 // method add in storage in local
   void addToCartList(List<CartModel> cartList) {
-    //sharedPreferences.remove(AppConstants.CART_LIST);
-    //sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+    sharedPreferences.remove(AppConstants.CART_LIST);
+    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
     var time = DateTime.now().toString();
     cart = [];
     cartList.forEach((element) {
@@ -25,21 +24,24 @@ class CartRepo {
       return cart.add(jsonEncode(element));
     });
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    // print(sharedPreferences.getStringList("Cart-list"));
-    //getCartList();
+    print(sharedPreferences.getStringList("Cart-list"));
+    getCartList();
   }
 
   //add list to history
   void addToCartHistory() {
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
-      cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
+      cartHistory =
+          sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     for (int i = 0; i < cart.length; i++) {
       cartHistory.add(cart[i]);
     }
     removeCart();
-    sharedPreferences.setStringList(AppConstants.CART_HISTORY_LIST, cartHistory);
-    print("the length of history list is " + getCartHistory().length.toString());
+    sharedPreferences.setStringList(
+        AppConstants.CART_HISTORY_LIST, cartHistory);
+    print(
+        "the length of history list is " + getCartHistory().length.toString());
   }
 
   //get cart list use in local
@@ -50,7 +52,8 @@ class CartRepo {
       print('inside getCartList' + cart.toString());
     }
     List<CartModel> cartList = [];
-    cart.forEach((element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
+    cart.forEach(
+        (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
 
     return cartList;
   }
@@ -59,7 +62,8 @@ class CartRepo {
   List<CartModel> getCartHistory() {
     if (sharedPreferences.containsKey(AppConstants.CART_HISTORY_LIST)) {
       cartHistory = [];
-      cartHistory = sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
+      cartHistory =
+          sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     List<CartModel> cartListHistory = [];
     cartHistory.forEach((element) =>

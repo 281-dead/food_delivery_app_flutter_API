@@ -210,6 +210,168 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
               ),
             ),
           ),
+          // GetBuilder<CartController>(builder: (_cartController) {
+          //   return _cartController.getCartHistory().length > 0
+          //       ? Expanded(
+          //           child: Container(
+          //             margin: EdgeInsets.only(
+          //               top: Dimension.height20,
+          //               left: Dimension.width20,
+          //               right: Dimension.width20,
+          //             ),
+          //             child: MediaQuery.removePadding(
+          //               removeTop: true,
+          //               context: context,
+          //               child: ListView(
+          //                 children: [
+          //                   for (int i = 0; i < itemsPerOder.length; i++)
+          //                     Container(
+          //                       margin:
+          //                           EdgeInsets.only(bottom: Dimension.height20),
+          //                       child: Column(
+          //                         crossAxisAlignment: CrossAxisAlignment.start,
+          //                         children: [
+          //                           //function is called immediately()
+          //                           (() {
+          //                             DateTime parseDate = DateFormat(
+          //                                     "yyyy-MM-dd HH:mm:ss")
+          //                                 .parse(getCartHistoryList[listCounter]
+          //                                     .time!);
+          //                             var inputDate =
+          //                                 DateTime.parse(parseDate.toString());
+          //                             var outputFormat =
+          //                                 DateFormat("MM/dd/yyyy hh:mm a");
+          //                             var outputDate =
+          //                                 outputFormat.format(inputDate);
+          //                             return BigText(
+          //                                 text: outputDate,
+          //                                 size: Dimension.font20);
+          //                           }()),
+          //                           SizedBox(height: Dimension.height10),
+          //                           Row(
+          //                             mainAxisAlignment:
+          //                                 MainAxisAlignment.spaceBetween,
+          //                             children: [
+          //                               Wrap(
+          //                                 direction: Axis.horizontal,
+          //                                 children: List.generate(
+          //                                     itemsPerOder[i], (index) {
+          //                                   if (listCounter <
+          //                                       getCartHistoryList.length) {
+          //                                     listCounter++;
+          //                                   }
+          //                                   return index <= 2
+          //                                       ? Container(
+          //                                           height: Dimension.height80,
+          //                                           width: Dimension.width80,
+          //                                           margin: EdgeInsets.only(
+          //                                             right: Dimension.width5,
+          //                                           ),
+          //                                           decoration: BoxDecoration(
+          //                                             borderRadius: BorderRadius
+          //                                                 .circular(Dimension
+          //                                                         .radius20 /
+          //                                                     2),
+          //                                             image: DecorationImage(
+          //                                               fit: BoxFit.cover,
+          //                                               image: NetworkImage(AppConstants.BASE_URL + AppConstants.UPLOAD_IMG + getCartHistoryList[listCounter - 1].img!,
+          //                                               ),
+          //                                             ),
+          //                                           ),
+          //                                         )
+          //                                       : Container();
+          //                                 }),
+          //                               ),
+          //                               Container(
+          //                                 height: Dimension.height80,
+          //                                 width: Dimension.width80,
+          //                                 child: Column(
+          //                                   mainAxisAlignment:
+          //                                       MainAxisAlignment.spaceEvenly,
+          //                                   crossAxisAlignment:
+          //                                       CrossAxisAlignment.end,
+          //                                   children: [
+          //                                     SmallText(text: "Total"),
+          //                                     BigText(
+          //                                       text:
+          //                                           itemsPerOder[i].toString() +
+          //                                               " items",
+          //                                       color: AppColors.titleColor,
+          //                                     ),
+          //                                     GestureDetector(
+          //                                       onTap: () {
+          //                                         var orderTime = cartOderTimeToList();
+          //                                         Map<int, CartModel> moreOder =
+          //                                             {};
+          //                                         for (int j = 0; j < getCartHistoryList.length; j++) {
+          //                                           if (getCartHistoryList[j]
+          //                                                   .time ==
+          //                                               orderTime[i]) {
+          //                                             moreOder.putIfAbsent(
+          //                                               getCartHistoryList[j]
+          //                                                   .id!,
+          //                                               () =>
+          //                                                   CartModel.fromJson(
+          //                                                 jsonDecode(
+          //                                                   jsonEncode(
+          //                                                       getCartHistoryList[
+          //                                                           j]),
+          //                                                 ),
+          //                                               ),
+          //                                             );
+          //                                           }
+          //                                         }
+          //                                         Get.find<CartController>()
+          //                                             .setItem = moreOder;
+          //                                         Get.find<CartController>()
+          //                                             .addToCartList();
+          //                                         Get.toNamed(RoutesHelper
+          //                                             .getCartPage());
+          //                                       },
+          //                                       child: Container(
+          //                                         width: double.maxFinite,
+          //                                         padding: EdgeInsets.symmetric(
+          //                                           horizontal:
+          //                                               Dimension.height5,
+          //                                           vertical:
+          //                                               Dimension.height10,
+          //                                         ),
+          //                                         decoration: BoxDecoration(
+          //                                             borderRadius: BorderRadius
+          //                                                 .circular(Dimension
+          //                                                         .radius15 /
+          //                                                     2),
+          //                                             border: Border.all(
+          //                                               width: 1,
+          //                                               color:
+          //                                                   AppColors.mainColor,
+          //                                             )),
+          //                                         child: SmallText(
+          //                                             text: "one more",
+          //                                             color:
+          //                                                 AppColors.mainColor),
+          //                                       ),
+          //                                     ),
+          //                                   ],
+          //                                 ),
+          //                               ),
+          //                             ],
+          //                           ),
+          //                         ],
+          //                       ),
+          //                     ),
+          //                 ],
+          //               ),
+          //             ),
+          //           ),
+          //         )
+          //       : Container(
+          //           height: Dimension.screenHeight / 1.5,
+          //           child: NoDataPage(
+          //               text: "You have no data in the history cart",
+          //               imgPath: "assets/image/empty_box.png"),
+          //         );
+          // }),
         ],
       ),
     );

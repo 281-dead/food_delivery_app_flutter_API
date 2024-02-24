@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hc_e_commerce_food_delivery/controller/cart_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/popular_product_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/recommended_product_controller.dart';
-import 'package:hc_e_commerce_food_delivery/pages/cart/cart_page.dart';
-import 'package:hc_e_commerce_food_delivery/pages/food/popular_food_detail.dart';
-import 'package:hc_e_commerce_food_delivery/pages/food/recomended_food_detail.dart';
-import 'package:hc_e_commerce_food_delivery/pages/home/food_page_body.dart';
-import 'package:hc_e_commerce_food_delivery/pages/home/home_page.dart';
-import 'package:hc_e_commerce_food_delivery/pages/home/main_food_page.dart';
-import 'package:get/get.dart';
-import 'package:hc_e_commerce_food_delivery/pages/home/splash_page.dart';
 import 'package:hc_e_commerce_food_delivery/routes/routes_helper.dart';
+
 import 'helper/dependecies.dart' as dep;
 
 Future<void> main() async {
@@ -26,18 +20,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-  Get.find<CartController>().getCartData();
-   return GetBuilder<PopularProductController>(builder: (_){
-     return GetBuilder<RecommendedProductController>(builder: (_){
-         return GetMaterialApp(
-         debugShowCheckedModeBanner: false,
-         title: 'Flutter Demo',
-         initialRoute: RoutesHelper.getSplashPage(),
-         getPages: RoutesHelper.route,
-       );
-     });
-   });
-
+    Get.find<CartController>().getCartData();
+    return GetBuilder<PopularProductController>(builder: (_) {
+      return GetBuilder<RecommendedProductController>(builder: (_) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          initialRoute: RoutesHelper.getSplashPage(),
+          getPages: RoutesHelper.route,
+        );
+      });
+    });
   }
 }
-
