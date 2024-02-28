@@ -10,3 +10,4 @@ com.example.hc_e_commerce_food_delivery.app-rs-8 D:\LTDD\E-commerce App-Food-del
 com.example.hc_e_commerce_food_delivery.app-mergeDebugResources-9 D:\LTDD\E-commerce App-Food-delivery\hc_e_commerce_food_delivery\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
 com.example.hc_e_commerce_food_delivery.app-mergeDebugResources-10 D:\LTDD\E-commerce App-Food-delivery\hc_e_commerce_food_delivery\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
 com.example.hc_e_commerce_food_delivery.app-merged_res-11 D:\LTDD\E-commerce App-Food-delivery\hc_e_commerce_food_delivery\build\app\intermediates\merged_res\debug
+com.example.hc_e_commerce_food_delivery.app-packaged_res-12 D:\LTDD\E-commerce App-Food-delivery\hc_e_commerce_food_delivery\build\shared_preferences_android\intermediates\packaged_res\debug

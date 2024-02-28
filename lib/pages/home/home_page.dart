@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hc_e_commerce_food_delivery/pages/account/account_page.dart';
 import 'package:hc_e_commerce_food_delivery/pages/cart/cart_history_page.dart';
 import 'package:hc_e_commerce_food_delivery/pages/home/main_food_page.dart';
 import 'package:hc_e_commerce_food_delivery/utils/colors.dart';
@@ -16,7 +17,7 @@ class _HomePageState extends State<HomePage> {
     MainFoodPage(),
     Container(child: Center(child: Text('Page 1'))),
     CartHistoryPage(),
-    Container(child: Center(child: Text('Page 3'))),
+    AccountPage(),
   ];
 
   onTapped(int index) {

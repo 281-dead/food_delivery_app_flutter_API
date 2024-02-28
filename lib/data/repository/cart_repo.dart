@@ -24,7 +24,7 @@ class CartRepo {
       return cart.add(jsonEncode(element));
     });
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    print(sharedPreferences.getStringList("Cart-list"));
+    // print(sharedPreferences.getStringList("Cart-list"));
     getCartList();
   }
 
@@ -40,8 +40,7 @@ class CartRepo {
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
-    print(
-        "the length of history list is " + getCartHistory().length.toString());
+    //print("the length of history list is " + getCartHistory().length.toString());
   }
 
   //get cart list use in local
