@@ -48,7 +48,7 @@ class CartRepo {
     List<String> cart = [];
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
       cart = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      print('inside getCartList' + cart.toString());
+      //print('inside getCartList' + cart.toString());
     }
     List<CartModel> cartList = [];
     cart.forEach(
