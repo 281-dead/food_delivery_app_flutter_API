@@ -16,10 +16,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   var page = [
-    MainFoodPage(),
-    SignUpPage(),
-    CartHistoryPage(),
-    AccountPage(),
+    const MainFoodPage(),
+    const SignUpPage(),
+    const CartHistoryPage(),
+    const AccountPage(),
   ];
 
   onTapped(int index) {
