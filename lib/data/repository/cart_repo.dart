@@ -19,12 +19,11 @@ class CartRepo {
     sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
     var time = DateTime.now().toString();
     cart = [];
-    cartList.forEach((element) {
+    for (var element in cartList) {
       element.time = time;
-      return cart.add(jsonEncode(element));
-    });
+      continue;
+    }
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    // print(sharedPreferences.getStringList("Cart-list"));
     getCartList();
   }
 
@@ -40,7 +39,6 @@ class CartRepo {
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
-    //print("the length of history list is " + getCartHistory().length.toString());
   }
 
   //get cart list use in local
@@ -51,8 +49,9 @@ class CartRepo {
       //print('inside getCartList' + cart.toString());
     }
     List<CartModel> cartList = [];
-    cart.forEach(
-        (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
+    for (var element in cart) {
+      cartList.add(CartModel.fromJson(jsonDecode(element)));
+    }
 
     return cartList;
   }
@@ -65,8 +64,9 @@ class CartRepo {
           sharedPreferences.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     List<CartModel> cartListHistory = [];
-    cartHistory.forEach((element) =>
-        cartListHistory.add(CartModel.fromJson(jsonDecode(element))));
+    for (var element in cartHistory) {
+      cartListHistory.add(CartModel.fromJson(jsonDecode(element)));
+    }
     return cartListHistory;
   }
 
@@ -74,5 +74,11 @@ class CartRepo {
   void removeCart() {
     cart = [];
     sharedPreferences.remove(AppConstants.CART_LIST);
+  }
+
+  void clearCartHistory() {
+    removeCart();
+    cartHistory = [];
+    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
   }
 }

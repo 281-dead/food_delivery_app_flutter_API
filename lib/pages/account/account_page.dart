@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hc_e_commerce_food_delivery/controller/auth_controller.dart';
+import 'package:hc_e_commerce_food_delivery/controller/cart_controller.dart';
+import 'package:hc_e_commerce_food_delivery/routes/routes_helper.dart';
 import 'package:hc_e_commerce_food_delivery/utils/colors.dart';
 import 'package:hc_e_commerce_food_delivery/utils/dimensions.dart';
 import 'package:hc_e_commerce_food_delivery/widgets/account_widget.dart';
 import 'package:hc_e_commerce_food_delivery/widgets/app_icons.dart';
 import 'package:hc_e_commerce_food_delivery/widgets/big_text.dart';
+import 'package:get/get.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -108,16 +112,28 @@ class AccountPage extends StatelessWidget {
                   ),
                   SizedBox(height: Dimension.height20),
                   //checkout
-                  AccountWidget(
-                    appIcon: AppIcon(
-                      icon: Icons.logout,
-                      backgroundcolor: Colors.red,
-                      iconColor: Colors.white,
-                      iconSize: Dimension.iconSize24,
-                      size: Dimension.size20 * 2.5,
-                    ),
-                    bigText: BigText(
-                      text: "cuong",
+                  GestureDetector(
+                    onTap: () {
+                      if (Get.find<AuthController>().userLoggedIn()) {
+                        Get.find<AuthController>().clearSharedData();
+                        Get.find<CartController>().clear();
+                        Get.find<CartController>().clearCartHistoryList();
+                        Get.offNamed(RoutesHelper.getSignInPage());
+                      } else {
+                        print("You are not logged in");
+                      }
+                    },
+                    child: AccountWidget(
+                      appIcon: AppIcon(
+                        icon: Icons.logout,
+                        backgroundcolor: Colors.red,
+                        iconColor: Colors.white,
+                        iconSize: Dimension.iconSize24,
+                        size: Dimension.size20 * 2.5,
+                      ),
+                      bigText: BigText(
+                        text: "Logoutt",
+                      ),
                     ),
                   ),
                 ],

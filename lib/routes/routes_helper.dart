@@ -13,13 +13,12 @@ class RoutesHelper {
   static const String popular = "/popular-food";
   static const String recommended = "/recommended-food";
   static const String cart = "/cart-page";
-  static const String signup = "/sign-up-page";
-  static const String signin = "/sign-in-page";
+  static const String signin = "/signin";
 
   static String getInitial() => '$initial';
   static String getSplashPage() => '$splash';
   static String getSignInPage() => '$signin';
-  static String getSignUpPage() => '$signup';
+
   static String getPopularFood(int pageId, String page) =>
       '$popular?pageId=$pageId&page=$page';
 
@@ -34,16 +33,19 @@ class RoutesHelper {
       name: initial,
       page: () => const HomePage(),
     ),
+    //signin
+    GetPage(
+      name: signin,
+      page: () => const SignInPage(),
+      transition: Transition.fade,
+    ),
 
     //splash page
     GetPage(
       name: splash,
       page: () => const SplashScreeen(),
     ),
-    //Sign In Page
-    GetPage(name: signin, page: () => const SignInPage()),
-    //Sign Up Page
-    GetPage(name: signup, page: () => const SignUpPage()),
+
     //popular detail Page
     GetPage(
         name: popular,

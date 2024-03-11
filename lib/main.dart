@@ -25,13 +25,12 @@ class MyApp extends StatelessWidget {
     Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
-        return const GetMaterialApp(
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          home: SignInPage(),
-          // home: SignInPage(),
-          // initialRoute: RoutesHelper.getSplashPage(),
-          // getPages: RoutesHelper.route,
+          //home: SignInPage(),
+          initialRoute: RoutesHelper.getSplashPage(),
+          getPages: RoutesHelper.route,
         );
       });
     });

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hc_e_commerce_food_delivery/base/no_data_page.dart';
+import 'package:hc_e_commerce_food_delivery/controller/auth_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/cart_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/popular_product_controller.dart';
 import 'package:hc_e_commerce_food_delivery/controller/recommended_product_controller.dart';
@@ -59,8 +60,8 @@ class CartPage extends StatelessWidget {
               ],
             ),
           ),
-          GetBuilder<CartController>(builder: (_cartControlller) {
-            return _cartControlller.getItems.isNotEmpty
+          GetBuilder<CartController>(builder: (cartControlller) {
+            return cartControlller.getItems.isNotEmpty
                 ? Positioned(
                     top: Dimension.height20 * 5,
                     left: Dimension.width20,
@@ -72,9 +73,9 @@ class CartPage extends StatelessWidget {
                         context: context,
                         removeTop: true,
                         child: GetBuilder<CartController>(builder: (cart) {
-                          var _cartList = cart.getCartItem;
+                          var cartList = cart.getCartItem;
                           return ListView.builder(
-                              itemCount: _cartList.length,
+                              itemCount: cartList.length,
                               itemBuilder: (_, index) {
                                 return Container(
                                   width: double.maxFinite,
@@ -88,8 +89,7 @@ class CartPage extends StatelessWidget {
                                           var popularIndex = Get.find<
                                                   PopularProductController>()
                                               .popularProductList
-                                              .indexOf(
-                                                  _cartList[index].product);
+                                              .indexOf(cartList[index].product);
                                           if (popularIndex >= 0) {
                                             Get.toNamed(
                                                 RoutesHelper.getPopularFood(
@@ -99,7 +99,7 @@ class CartPage extends StatelessWidget {
                                                     RecommendedProductController>()
                                                 .recommededProductList
                                                 .indexOf(
-                                                    _cartList[index].product);
+                                                    cartList[index].product);
                                             if (recommendedIndex < 0) {
                                               Get.snackbar("History Product",
                                                   "Product reviews are not available for history products",
@@ -174,7 +174,7 @@ class CartPage extends StatelessWidget {
                                                         onTap: () {
                                                           cart.addItem(
                                                               -1,
-                                                              _cartList[index]
+                                                              cartList[index]
                                                                   .product!);
                                                         },
                                                         child: Icon(
@@ -183,14 +183,14 @@ class CartPage extends StatelessWidget {
                                                                 .signColor),
                                                       ),
                                                       BigText(
-                                                          text: _cartList[index]
+                                                          text: cartList[index]
                                                               .quantity
                                                               .toString()),
                                                       GestureDetector(
                                                         onTap: () {
                                                           cart.addItem(
                                                               1,
-                                                              _cartList[index]
+                                                              cartList[index]
                                                                   .product!);
                                                         },
                                                         child: Icon(Icons.add,
@@ -213,7 +213,7 @@ class CartPage extends StatelessWidget {
                       ),
                     ),
                   )
-                : NoDataPage(text: "Your cart is empty!");
+                : const NoDataPage(text: "Your cart is empty!");
           }),
         ],
       ),
@@ -250,8 +250,11 @@ class CartPage extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        cartController
-                            .addToHistory(); //payment, Delete the products in the cart and then move to the cart history page.
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          cartController.addToHistory();
+                        } else {
+                          Get.toNamed(RoutesHelper.getSignInPage());
+                        }
                       },
                       child: Container(
                         padding: EdgeInsets.all(Dimension.width10),

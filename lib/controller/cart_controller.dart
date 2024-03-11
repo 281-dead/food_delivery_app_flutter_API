@@ -118,7 +118,6 @@ class CartController extends GetxController {
   //set cart data in local
   set setCart(List<CartModel> items) {
     storageItems = items;
-    //print("length of cart items: " + storageItems.length.toString());
     for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
@@ -149,9 +148,8 @@ class CartController extends GetxController {
     update();
   }
 
-  void printItemInCart() {
-    _items.forEach((key, value) {
-      print("Item in cart: " + value.toString());
-    });
+  void clearCartHistoryList() {
+    cartRepo.clearCartHistory();
+    update();
   }
 }

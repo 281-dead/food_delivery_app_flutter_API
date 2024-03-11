@@ -12,7 +12,12 @@ class AppConstants {
 
   static const String DRINKKS_PRODUCT_URI = "/api/v1/products/drinks";
 
-  static const String TOKEN = "DBToken";
+  static const String TOKEN = "";
+  static const String PHONE = "";
+  static const String PASSWORD = "";
+  //auth end point
+  static const String REGISTRATION_URI = "/api/v1/auth/register";
+  static const String LOGIN_URI = "/api/v1/auth/login";
 
   static const String UPLOAD_IMG = "/uploads/";
 
