@@ -21,7 +21,7 @@ class CartRepo {
     cart = [];
     for (var element in cartList) {
       element.time = time;
-      continue;
+      cart.add(jsonEncode(element));
     }
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
     getCartList();

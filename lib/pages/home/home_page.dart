@@ -17,9 +17,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   var page = [
     const MainFoodPage(),
-    Container(
-      child: const Text("History page"),
-    ),
+    const Center(child: Text("History page")),
     const CartHistoryPage(),
     const AccountPage(),
   ];
