@@ -36,25 +36,25 @@ class _HomePageState extends State<HomePage> {
         onTap: onTapped,
         currentIndex: _selectedIndex,
         selectedItemColor: AppColors.mainColor,
-        unselectedItemColor: Colors.orangeAccent,
+        unselectedItemColor: Colors.grey,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
             label: "home",
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
           ),
           BottomNavigationBarItem(
             label: "delivery",
-            icon: Icon(Icons.delivery_dining),
+            icon: Icon(Icons.delivery_dining_outlined),
           ),
           BottomNavigationBarItem(
             label: "history",
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart_outlined),
           ),
           BottomNavigationBarItem(
             label: "contact",
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person_outline),
           ),
         ],
       ),

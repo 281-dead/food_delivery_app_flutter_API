@@ -4,6 +4,7 @@ import 'package:hc_e_commerce_food_delivery/base/custom_loader.dart';
 import 'package:hc_e_commerce_food_delivery/base/show_snackbar.dart';
 import 'package:hc_e_commerce_food_delivery/controller/auth_controller.dart';
 import 'package:hc_e_commerce_food_delivery/model/signup_body_model.dart';
+import 'package:hc_e_commerce_food_delivery/routes/routes_helper.dart';
 import 'package:hc_e_commerce_food_delivery/utils/colors.dart';
 import 'package:hc_e_commerce_food_delivery/utils/dimensions.dart';
 import 'package:hc_e_commerce_food_delivery/widgets/app_text_field.dart';
@@ -48,7 +49,8 @@ class _SignUpPageState extends State<SignUpPage> {
           name: name, phone: phone, email: email, password: password);
       authController.registration(signUpBody).then((status) {
         if (status.isSuccess) {
-          print("suscess regiter");
+          print("suscess register");
+          Get.offNamed(RoutesHelper.getInitial());
         } else {
           showCustomSnackBar(status.message);
         }
